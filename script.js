@@ -1,14 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const navLinks = document.querySelectorAll('nav li a');
+    const allLinks = document.querySelectorAll('a');
 
-    navLinks.forEach(link => {
+    allLinks.forEach(link => {
         link.addEventListener('click', function(event) {
             event.preventDefault();
-            const href = event.target.getAttribute('href');
-            if (href === 'jokes.html') {
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                const targetElement = document.querySelector(href);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            } else if (href && href.includes('.html')) {
                 window.location.href = href;
-            } else {
-                document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
             }
         });
     });
