@@ -15,4 +15,18 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    const audioElement = document.getElementById('song-audio');
+    const playButton = document.getElementById('play-button');
+
+    playButton.addEventListener('click', function() {
+        const songs = ['elg6.mp3', 'elg7.mp3'];
+        const randomSong = songs[Math.floor(Math.random() * songs.length)];
+        audioElement.src = randomSong;
+        if (audioElement.paused) {
+            audioElement.play();
+        } else {
+            audioElement.pause();
+        }
+    });
 });
